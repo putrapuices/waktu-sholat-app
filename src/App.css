@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Gaya untuk list jadwal waktu sholat */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+/* Gaya untuk ikon menggunakan Font Awesome */
+.fa {
+  margin-right: 8px;
+  width: 20px;
+}
+
+
+/* Gaya untuk ikon jam */
+.fa-clock {
+  margin-right: 8px;
+  width: 20px;
+  color: #f39c12; /* Warna kuning */
+}
+
+/* Gaya untuk ikon matahari */
+.fa-sun {
+  margin-right: 8px;
+  width: 20px;
+  color: #f1c40f; /* Warna kuning redup */
+}
