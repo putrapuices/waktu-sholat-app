@@ -11,20 +11,16 @@ import PrayerTimesCalendar from './PrayerTimesCalendar';
 function App() {
   return (
     <Router>
-      <LocationProvider>
-        <>
-          <CustomNavbar />
-
-          <Routes>
-            <Route path="/" element={<PrayerTimesList />} />
-            <Route path="/setting" element={<SettingPage />} />
-            <Route path="/WaktuSholatApp" element={<WaktuSholatApp />} />
-            <Route path="/PrayerTimesCalendar" element={<PrayerTimesCalendar />} />
-          </Routes>
-
-          <Footer />
-        </>
-      </LocationProvider>
+      <>
+        <CustomNavbar />
+        <Routes>
+          <Route path="/" element={<PrayerTimesList />} />
+          <Route path="/setting" element={<SettingPage />} />
+          <Route path="/WaktuSholatApp" element={<WaktuSholatApp />} />
+          <Route path="/PrayerTimesCalendar" element={<PrayerTimesCalendar />} />
+        </Routes>
+        <Footer />
+      </>
     </Router>
   );
 }

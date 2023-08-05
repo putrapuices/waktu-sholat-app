@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Typography, List, ListItem, ListItemText, Divider, Container } from '@mui/material';
 import useLocalStorage from './useLocalStorage';
+import AdzanSound from './adzan/adzan.mp3'; // Pastikan ini mengarah ke file suara adzan yang benar
 
 const PrayerTimesList = () => {
   const [storedLatitude, setStoredLatitude] = useLocalStorage('latitude', 0);
@@ -14,25 +15,6 @@ const PrayerTimesList = () => {
     fetchPrayerTimes();
     fetchLocationName();
   }, [storedLatitude, storedLongitude]);
-
-  useEffect(() => {
-    const now = new Date();
-    const currentTime = now.getHours() * 60 + now.getMinutes();
-
-    // Check if the current time matches any prayer time and play the adzan sound
-    if (prayerTimes) {
-      for (const prayerTime in prayerTimes) {
-        const time = prayerTimes[prayerTime];
-        const [hours, minutes] = time.split(':');
-        const prayerTimeInMinutes = parseInt(hours) * 60 + parseInt(minutes);
-
-        if (currentTime === prayerTimeInMinutes) {
-          playAdzanSound();
-          break;
-        }
-      }
-    }
-  }, [prayerTimes]);
 
   const fetchPrayerTimes = async () => {
     try {
@@ -48,7 +30,7 @@ const PrayerTimesList = () => {
       });
       setPrayerTimes(response.data.data.timings);
     } catch (error) {
-      console.error('Error fetching prayer times:', error);
+      console.error('Terjadi kesalahan saat mengambil jadwal sholat:', error);
     }
   };
 
@@ -63,7 +45,7 @@ const PrayerTimesList = () => {
       });
       setLocationName(response.data.display_name);
     } catch (error) {
-      console.error('Error fetching location name:', error);
+      console.error('Terjadi kesalahan saat mengambil nama lokasi:', error);
     }
   };
 
@@ -74,9 +56,27 @@ const PrayerTimesList = () => {
 
   const prayerTimesKeys = Object.keys(prayerTimes);
 
-  const playAdzanSound = () => {
-    const adzanAudio = new Audio('/adzan/adzan.mp3');
-    adzanAudio.play();
+  const [isAdhanRequested, setIsAdhanRequested] = useState(false);
+  const [isAdhanPlaying, setIsAdhanPlaying] = useState(false);
+
+  useEffect(() => {
+    if (isAdhanRequested) {
+      playAdhan();
+    }
+  }, [isAdhanRequested]);
+
+  const playAdhan = () => {
+    const audio = new Audio(AdzanSound); // Pastikan AdzanSound mengarah ke file suara adzan yang benar
+    audio.play();
+    setIsAdhanPlaying(true);
+    audio.onended = () => {
+      setIsAdhanPlaying(false);
+      setIsAdhanRequested(false);
+    };
+  };
+
+  const handleAdhanButtonClick = () => {
+    setIsAdhanRequested(true);
   };
 
   return (
@@ -93,6 +93,9 @@ const PrayerTimesList = () => {
           </ListItem>
         ))}
       </List>
+      <button onClick={handleAdhanButtonClick} disabled={isAdhanPlaying || isAdhanRequested}>
+        {isAdhanPlaying ? 'Memutar Adzan...' : isAdhanRequested ? 'Klik lagi untuk memutar Adzan' : 'Putar Adzan'}
+      </button>
     </Container>
   );
 };
