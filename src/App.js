@@ -7,7 +7,6 @@ import PrayerTimesList from './PrayerTimesList';
 import SettingPage from './SettingPage';
 import WaktuSholatApp from './WaktuSholatApp';
 import PrayerTimesCalendar from './PrayerTimesCalendar';
-import { LocationProvider } from './LocationContext';
 
 function App() {
   return (
