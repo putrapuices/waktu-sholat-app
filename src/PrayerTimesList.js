@@ -25,7 +25,7 @@ const PrayerTimesList = () => {
       const now = new Date();
       const date = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}`;
 
-      const response = await axios.get(`http://api.aladhan.com/v1/timings/${date}`, {
+      const response = await axios.get(`https://api.aladhan.com/v1/timings/${date}`, {
         params: {
           latitude: storedLatitude,
           longitude: storedLongitude,

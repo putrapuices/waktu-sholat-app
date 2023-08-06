@@ -4,7 +4,7 @@ import { faClock, faSun } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const API_BASE_URL = 'http://api.aladhan.com/v1';
+const API_BASE_URL = 'https://api.aladhan.com/v1';
 
 const WaktuSholatApp = () => {
     const [city, setCity] = useState('');

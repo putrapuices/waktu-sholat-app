@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faSun } from '@fortawesome/free-solid-svg-icons';
 
-const API_BASE_URL = 'http://api.aladhan.com/v1';
+const API_BASE_URL = 'https://api.aladhan.com/v1';
 
 const PrayerTimesCalendar = () => {
     const [city, setCity] = useState('');
