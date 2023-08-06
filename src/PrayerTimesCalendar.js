@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faSun } from '@fortawesome/free-solid-svg-icons';
+import './PrayerTimesCalendar.css'; // Import custom CSS file
 
 const API_BASE_URL = 'https://api.aladhan.com/v1';
 
@@ -96,22 +97,24 @@ const PrayerTimesCalendar = () => {
 
             {prayerTimes.length > 0 ? (
                 <div className="mt-4">
-                    <ul className="prayer-times-list">
+                    <div className="prayer-times-list">
                         {prayerTimes.map((data, index) => (
-                            <li key={index} className="prayer-time-item">
+                            <div key={index} className="prayer-time-item">
                                 <div className="prayer-time-date">
                                     <FontAwesomeIcon icon={faClock} />
                                     <span>Date: {data.date.readable}</span>
                                 </div>
-                                {Object.entries(data.timings).map(([key, value]) => (
-                                    <div key={key} className="prayer-time">
-                                        <FontAwesomeIcon icon={getIconForPrayerTime(key)} />
-                                        <span>{key}: {value}</span>
-                                    </div>
-                                ))}
-                            </li>
+                                <div className="prayer-time-list">
+                                    {Object.entries(data.timings).map(([key, value]) => (
+                                        <div key={key} className="prayer-time">
+                                            <FontAwesomeIcon icon={getIconForPrayerTime(key)} />
+                                            <span>{key}: {value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             ) : (
                 <p className="mt-4">Tidak ada jadwal sholat yang tersedia.</p>

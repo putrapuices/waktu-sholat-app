@@ -1,0 +1,71 @@
+/* PrayerTimesCalendar.css */
+
+.prayer-times-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .prayer-times-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .prayer-time-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .prayer-time-date {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .prayer-time {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .prayer-time span {
+    margin-left: 5px;
+  }
+
+  /* PrayerTimesCalendar.css */
+
+.prayer-times-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .prayer-time-item {
+    width: 300px; /* Atur lebar item sesuai keinginan Anda */
+    margin-right: 20px; /* Atur jarak antar item */
+    margin-bottom: 20px; /* Atur jarak vertikal */
+  }
+  
+  .prayer-time-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .prayer-time {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .prayer-time span {
+    margin-left: 5px;
+  }
+  
+  
