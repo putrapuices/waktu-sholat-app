@@ -12,7 +12,7 @@ export const QuranProvider = ({ children }) => {
     const fetchQuranData = async () => {
       try {
         const response = await axios.get(
-          'http://api.alquran.cloud/v1/quran/ar.alafasy'
+          'https://api.alquran.cloud/v1/quran/ar.alafasy'
         );
         setData(response.data.data.surahs);
       } catch (error) {
