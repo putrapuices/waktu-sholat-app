@@ -19,6 +19,9 @@ const CustomNavbar = () => {
                         <NavLink className="nav-link" to="/PrayerTimesCalendar" activeClassName="active">
                             Prayer Times Calendar
                         </NavLink>
+                        <NavLink className="nav-link" to="/quran" activeClassName="active">
+                            Al - Qur'an
+                        </NavLink>
                         <NavLink className="nav-link" to="/setting" activeClassName="active">
                             Setting Page
                         </NavLink>
