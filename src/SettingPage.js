@@ -12,11 +12,6 @@ const SettingPage = () => {
   const [storedLatitude, setStoredLatitude] = useLocalStorage('latitude', 0);
   const [storedLongitude, setStoredLongitude] = useLocalStorage('longitude', 0);
 
-  const handleSetLocation = () => {
-    setStoredLatitude(newLatitude);
-    setStoredLongitude(newLongitude);
-  };
-
   useEffect(() => {
     // Fetch search results when searchQuery changes
     const fetchSearchResults = async () => {
@@ -47,6 +42,11 @@ const SettingPage = () => {
     });
 
     return <Marker position={[newLatitude, newLongitude]} />;
+  };
+
+  const handleSetLocation = () => {
+    setStoredLatitude(newLatitude);
+    setStoredLongitude(newLongitude);
   };
 
   return (

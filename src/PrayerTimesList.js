@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Typography, List, ListItem, ListItemText, Divider, Container } from '@mui/material';
 import useLocalStorage from './useLocalStorage';
-import AdzanSound from './adzan/adzan.mp3'; // Pastikan ini mengarah ke file suara adzan yang benar
+import AdzanSound from './adzan/adzan.mp3';
 
 const PrayerTimesList = () => {
   const [storedLatitude, setStoredLatitude] = useLocalStorage('latitude', 0);
@@ -10,6 +10,10 @@ const PrayerTimesList = () => {
   const [prayerTimes, setPrayerTimes] = useState({});
   const [locationName, setLocationName] = useState('');
   const method = 2;
+  const prayerTimesKeys = Object.keys(prayerTimes);
+
+  const [isAdhanRequested, setIsAdhanRequested] = useState(false);
+  const [isAdhanPlaying, setIsAdhanPlaying] = useState(false);
 
   useEffect(() => {
     fetchPrayerTimes();
@@ -54,11 +58,6 @@ const PrayerTimesList = () => {
     return `${hours}:${minutes}`;
   };
 
-  const prayerTimesKeys = Object.keys(prayerTimes);
-
-  const [isAdhanRequested, setIsAdhanRequested] = useState(false);
-  const [isAdhanPlaying, setIsAdhanPlaying] = useState(false);
-
   useEffect(() => {
     if (isAdhanRequested) {
       playAdhan();
@@ -66,7 +65,7 @@ const PrayerTimesList = () => {
   }, [isAdhanRequested]);
 
   const playAdhan = () => {
-    const audio = new Audio(AdzanSound); // Pastikan AdzanSound mengarah ke file suara adzan yang benar
+    const audio = new Audio(AdzanSound); 
     audio.play();
     setIsAdhanPlaying(true);
     audio.onended = () => {
