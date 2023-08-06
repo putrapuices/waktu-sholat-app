@@ -18,7 +18,34 @@ const PrayerTimesList = () => {
   useEffect(() => {
     fetchPrayerTimes();
     fetchLocationName();
-  }, [storedLatitude, storedLongitude]);
+
+    const checkPrayerTimes = () => {
+      const now = new Date();
+      const currentTime = now.getHours() + ':' + now.getMinutes();
+
+      if (prayerTimes['Fajr'] === currentTime) {
+        // Memainkan adzan ketika waktu Fajr
+        playAdhan();
+      } else if (prayerTimes['Dhuhr'] === currentTime) {
+        // Memainkan adzan ketika waktu Dhuhr
+        playAdhan();
+      } else if (prayerTimes['Asr'] === currentTime) {
+        // Memainkan adzan ketika waktu Asr
+        playAdhan();
+      } else if (prayerTimes['Maghrib'] === currentTime) {
+        // Memainkan adzan ketika waktu Maghrib
+        playAdhan();
+      } else if (prayerTimes['Isha'] === currentTime) {
+        // Memainkan adzan ketika waktu Isha
+        playAdhan();
+      }
+    };
+
+    // Memeriksa waktu sholat setiap satu menit
+    const interval = setInterval(checkPrayerTimes, 60000);
+
+    return () => clearInterval(interval);
+  }, [storedLatitude, storedLongitude, prayerTimes]);
 
   const fetchPrayerTimes = async () => {
     try {
@@ -58,14 +85,8 @@ const PrayerTimesList = () => {
     return `${hours}:${minutes}`;
   };
 
-  useEffect(() => {
-    if (isAdhanRequested) {
-      playAdhan();
-    }
-  }, [isAdhanRequested]);
-
   const playAdhan = () => {
-    const audio = new Audio(AdzanSound); 
+    const audio = new Audio(AdzanSound);
     audio.play();
     setIsAdhanPlaying(true);
     audio.onended = () => {
@@ -93,7 +114,11 @@ const PrayerTimesList = () => {
         ))}
       </List>
       <button onClick={handleAdhanButtonClick} disabled={isAdhanPlaying || isAdhanRequested}>
-        {isAdhanPlaying ? 'Memutar Adzan...' : isAdhanRequested ? 'Klik lagi untuk memutar Adzan' : 'Putar Adzan'}
+        {isAdhanPlaying
+          ? 'Memutar Adzan...'
+          : isAdhanRequested
+          ? 'Klik lagi untuk memutar Adzan'
+          : 'Putar Adzan'}
       </button>
     </Container>
   );
